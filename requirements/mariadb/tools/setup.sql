@@ -1,0 +1,5 @@
+
+DROP DATABASE IF EXISTS wordpress;
+CREATE DATABASE wordpress;
+
+-- CREATE USER "zrabhi" IF NOT EXIST

@@ -1,8 +1,15 @@
 FROM debian:buster
+
 RUN apt-get update && apt-get upgrade -y && apt install mariadb-server -y
-COPY ./tools/script.sh tmp/script.sh
+
+COPY ./tools/script.sh tmp/script.sh 
+
 COPY ./tools/setup.sql tmp/setup.sql
-RUN         chmod +x /tmp/script.sh
+
+RUN  chmod +x /tmp/script.sh
+
 ENTRYPOINT  ["/tmp/script.sh"]
+
 # EXPOSE 8888
+
 CMD ["/bin/bash"]

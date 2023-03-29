@@ -1,0 +1,11 @@
+mariadb:
+  build: mariadb
+  container_name: mariadb
+  
+  env_file:
+    - .env
+  restart: always
+  # ports:
+  #   -'3306:3306'
+  # network:
+  #   - nat

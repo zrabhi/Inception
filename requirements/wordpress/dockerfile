@@ -1,3 +1,4 @@
 FROM debian:buster
-RUN apt-get update && apt-get upgrade -y && apt-get install curl -y
+RUN apt-get update && apt-get upgrade -y && apt-get install wget -y\
+    && apt install -y php php-curl php-mysql && apt install -y php7.3-fpm\
 CMD ["bash" ]

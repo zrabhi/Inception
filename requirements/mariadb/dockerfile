@@ -4,12 +4,12 @@ RUN apt-get update && apt-get upgrade -y && apt install mariadb-server -y
 
 COPY ./tools/script.sh tmp/script.sh 
 
-COPY ./tools/setup.sql tmp/setup.sql
+# COPY ./tools/setup.sql tmp/setup.sql
 
 COPY ./tools/50-server.cnf /etc/mysql/mariadb.conf.d/
 
 RUN  chmod +x /tmp/script.sh
-
-ENTRYPOINT  ["/tmp/script.sh"]
-
+ENTRYPOINT [ "sh","/tmp/script.sh" ]
 CMD ["/bin/bash"]
+
+# CMD ["mysqld"]

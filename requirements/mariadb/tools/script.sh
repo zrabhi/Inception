@@ -1,14 +1,19 @@
 #!/bin/bash
 
-service mysql start
-echo "DROP DATABASE IF EXISTS  WORPRESS;" >> /tmp/setup.sql
-echo "CREATE DATABASE WORPRESSE;"  >> /tmp/setup.sql
-echo "DROP USER IF EXISTS zac; " >> /tmp/setup.sql
-echo "CREATE USER zac@'%' IDENTIFIED BY 'pass';" >> /tmp/setup.sql
-echo "GRANT ALL PRIVILEGES ON WORDPRESS.* TO 'zac'@'%' IDENTIFIED BY 'pass';" >> /tmp/setup.sql
-echo "FLUSH PRIVILEGES;" >> /tmp/setup.sql
-mysql -u root < /tmp/setup.sql
+if [ ! -d "/var/lib/mysql/$USER_DATABASE" ]
+then
+    service mysql start   
+    echo "CREATE DATABASE $USER_DATABASE ;" >> setup.sql
+    echo "DROP USER IF EXISTS $USER_WP;" >> setup.sql
+    echo "CREATE USER $USER_WP@'%' IDENTIFIED BY $USER_PASSWORD;" >> setup.sql
+    echo "GRANT ALL PRIVILEGES ON $USER_DATABASE.* TO $USER_WP@'%' IDENTIFIED BY $USER_PASSWORD;" >> setup.sql 
+    echo "FLUSH PRIVILEGES;" >> /tmp/setup.sql
+    mysql -u root < /tmp/setup.sql
 # exec '@?'
+fi 
+
+
+# kill $(cat /init/mysql.pid)
+
 exec "$@"
-# service mysql stop
 # mysqld

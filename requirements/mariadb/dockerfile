@@ -10,6 +10,5 @@ COPY ./tools/50-server.cnf /etc/mysql/mariadb.conf.d/
 
 RUN  chmod +x /tmp/script.sh
 ENTRYPOINT [ "sh","/tmp/script.sh" ]
-CMD ["/bin/bash"]
 
-# CMD ["mysqld"]
+CMD ["mysqld"]

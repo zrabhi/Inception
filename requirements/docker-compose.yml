@@ -9,3 +9,9 @@ services:
     env_file:
       - .env
     restart: always
+  nginx:
+    build: nginx
+    container_name: nginx
+    env_file: 
+      - .env
+    restart: always 

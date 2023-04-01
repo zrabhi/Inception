@@ -13,5 +13,5 @@ then
     service mysql stop &
     wait $!
 fi 
-    
+                                                 
 exec "$@"

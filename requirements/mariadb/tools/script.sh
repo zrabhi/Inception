@@ -13,6 +13,5 @@ then
     service mysql stop &
     wait $!
 fi 
-    # kill $(cat /var/run/mysqld/mysqld.pid)
     
 exec "$@"

@@ -15,3 +15,11 @@ services:
     env_file: 
       - .env
     restart: always 
+  wordpress:
+    build: requirements/wordpress
+    container_name: wordpress
+    env_file:
+      - .env
+    ports:
+      - "9000:9000"
+    restart: always

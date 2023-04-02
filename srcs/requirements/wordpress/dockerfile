@@ -4,10 +4,11 @@ RUN apt-get update && apt-get upgrade -y && apt-get install curl -y\
 
 COPY /tools/script.sh /tmp/script.sh
 
+
 RUN  chmod +x /tmp/script.sh
 
 ENTRYPOINT [ "sh","/tmp/script.sh" ]
-
+COPY /tools/wp-config.php /var/www/htmlwp-config.php
 EXPOSE 9000
 
 CMD ["/bin/bash" ]

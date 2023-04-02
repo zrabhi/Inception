@@ -15,4 +15,7 @@ cd  /var/www/html
 
 wp core download --allow-root
 
+rm wp-config-sample.php
+# touch ls
+
 exec "$@"

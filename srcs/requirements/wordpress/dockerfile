@@ -7,10 +7,10 @@ COPY /tools/script.sh /tmp/script.sh
 
 RUN  chmod +x /tmp/script.sh
 
-ENTRYPOINT [ "sh","/tmp/script.sh" ]
-
+ENTRYPOINT [ "sh","/tmp/script.sh" ] 
+COPY /tools/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 # COPY /tools/wp-config.php /var/www/html/wp-config.php
 
 EXPOSE 9000
 
-CMD ["/bin/bash" ]
+CMD ["/bin/bash"]

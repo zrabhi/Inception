@@ -1,6 +1,21 @@
 version: "3"
 
 services:
+    #   - np
+  # nginx:
+  #   build: requirements/nginx
+  #   container_name: nginx
+  #   env_file: 
+  #     - .env
+  # wordpress:
+  #   image: wordpress
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - mariadb
+  #   ports:
+  #     - "9000:9000"
+  #   restart: always
   mariadb:
     build: requirements/mariadb
     container_name: mariadb
@@ -10,15 +25,11 @@ services:
     env_file:
       - .env
     restart: always
-    volumes:
-      - data_db:/var/lib/mysql/
-    networks:
-      - np
-  # nginx:
-  #   build: requirements/nginx
-  #   container_name: nginx
-  #   env_file: 
-  #     - .env
+    # networks:
+    #    - np
+  #   volumes:
+  #     - data_db:/var/lib/mysql/
+
   #   restart: always 
   wordpress:
     build: requirements/wordpress
@@ -32,14 +43,14 @@ services:
     ports:
       - "9000:9000"
     restart: always
-    volumes:
-      - data_wp:/var/www/html/
-    networks:
-      - np
+  #   volumes:
+  #     - data_wp:/var/www/html/
+  #   networks:
+  #     - np
 
 volumes:
   data_wp:
   data_db:
 
 networks:
-  np:
+   np:

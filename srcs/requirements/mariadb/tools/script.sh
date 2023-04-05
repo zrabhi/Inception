@@ -12,7 +12,7 @@ service mysql start
 mysql -u root -e "CREATE DATABASE IF NOT EXISTS $USER_DATABASE;"
 mysql -u root -e "CREATE USER IF NOT EXISTS  '$USER_WP'@'%' IDENTIFIED BY '$USER_PASSWORD';"
 mysql -u root -e "GRANT ALL PRIVILEGES ON $USER_DATABASE.* TO '$USER_WP'@'%' IDENTIFIED BY '$USER_PASSWORD';"
-mysql -u root -e  "CREATE USER '$MYSQL_ROOT'@'%' IDENTIFIED BY '$MYSQL_ROOTPASS';"
+# mysql -u root -e  "CREATE USER '$MYSQL_ROOT'@'%' IDENTIFIED BY '$MYSQL_ROOTPASS';"
 mysql -u root -e "FLUSH PRIVILEGES;" 
 service mysql stop
 # else

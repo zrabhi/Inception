@@ -5,8 +5,8 @@ services:
       build: requirements/mariadb
       container_name: mariadb
       image : mariadb
-      ports:
-      - "3306:3306"
+      expose :
+        - "3306"
       env_file:
         - .env
       restart: always
@@ -37,8 +37,8 @@ services:
         - mariadb
       env_file:
         - .env
-      ports:
-        - "9000:9000"
+      expose:
+        - "9000"
       restart: always
       volumes:
         - data_wp:/var/www/html/

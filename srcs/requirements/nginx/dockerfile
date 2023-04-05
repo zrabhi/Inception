@@ -1,6 +1,9 @@
 
 FROM debian:buster
 
-RUN apt -y update && apt install -y nginx && apt install openssl -y
+RUN apt -y update && apt install -y nginx && apt install openssl -y && openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /server.key  -out /server.crt -subj="/CN=zrabhi/O=zrabhi.1337.ma/C=MA/L=KHOURIBGA"
 
-CMD [ "/bin/bash" ]
+COPY ./tools/config /etc/nginx/sites-available/
+
+
+CMD [ "nginx", "-g", "daemon off;"]

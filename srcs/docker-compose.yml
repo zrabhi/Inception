@@ -1,56 +1,62 @@
 version: "3"
 
 services:
-    #   - np
-  # nginx:
-  #   build: requirements/nginx
-  #   container_name: nginx
-  #   env_file: 
-  #     - .env
-  # wordpress:
-  #   image: wordpress
-  #   env_file:
-  #     - .env
-  #   depends_on:
-  #     - mariadb
-  #   ports:
-  #     - "9000:9000"
-  #   restart: always
-  mariadb:
-    build: requirements/mariadb
-    container_name: mariadb
-    image : inception:mariadb
-    ports:
-    - "3306:3306"
-    env_file:
-      - .env
-    restart: always
-    # networks:
-    #    - np
-  #   volumes:
-  #     - data_db:/var/lib/mysql/
-
-  #   restart: always 
-  wordpress:
-    build: requirements/wordpress
-    container_name: wordpress
-    image: inception:wordpress
-    depends_on:
-      # - nginx
-      - mariadb
-    env_file:
-      - .env
-    ports:
-      - "9000:9000"
-    restart: always
-  #   volumes:
-  #     - data_wp:/var/www/html/
-  #   networks:
-  #     - np
+    mariadb:
+      build: requirements/mariadb
+      container_name: mariadb
+      image : mariadb
+      ports:
+      - "3306:3306"
+      env_file:
+        - .env
+      restart: always
+      volumes:
+        - mariadb_db:/var/lib/mysql/
+      networks:
+         - np
+    nginx:
+      build: requirements/nginx
+      container_name: nginx
+      image: nginx
+      env_file: 
+        - .env
+      ports:
+        - "443:443"
+      depends_on:
+        - wordpress
+      restart: always
+      volumes:
+        - data_wp:/var/www/html/
+      networks:
+      - np
+    wordpress:
+      build: requirements/wordpress
+      container_name: wordpress
+      image: wordpress
+      depends_on:
+        - mariadb
+      env_file:
+        - .env
+      ports:
+        - "9000:9000"
+      restart: always
+      volumes:
+        - data_wp:/var/www/html/
+      networks:
+        - np
 
 volumes:
   data_wp:
-  data_db:
+      driver_opts:
+        o: bind
+        type: none
+        device: /Users/zrabhi/Desktop/inception_volume/wordpress
+  mariadb_db:
+      driver_opts:
+        o: bind
+        type: none
+        device: /Users/zrabhi/Desktop/inception_volume/mariadb
 
 networks:
-   np:
+   np: 
+    driver: bridge    

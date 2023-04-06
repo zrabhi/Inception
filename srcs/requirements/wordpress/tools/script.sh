@@ -4,7 +4,7 @@
 mkdir -p /run/php/
 touch /run/php/php7.3-fpm.pid
 
-if test -f "/var/www/html/wp-config.php"; then
+if [  -f "/var/www/html/wp-config.php" ]; then
     echo "wp exist"
 else
 # # curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -41,7 +41,7 @@ wp user create --allow-root avnn ann@exavmple.com --user_pass=Qwerty.123
 
 
 ## install theme
-# wp theme install astra --activate --allow-root
+wp theme install astra --activate --allow-root
 
 # wp plugin install redis-cache --activate --allow-root
 

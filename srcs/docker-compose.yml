@@ -49,16 +49,18 @@ services:
       restart: on-failure
       networks:
         - np
-    adminer: requirements/bonus/adminer
-    container_name: adminer
-    image: adminer
-    env_file:
-      - .env
-    ports:
-      - "8080:8080"
-    restart: on-failure
-    networks:
-      - np
+    adminer:
+      build: requirements/bonus/adminer
+      container_name: adminer
+      image: adminer
+      env_file:
+        - .env
+      ports:
+        - "8080:8080"
+      restart: on-failure
+      networks:
+        - np
+
 volumes:
   data_wp:
       driver_opts:

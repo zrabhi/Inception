@@ -1,8 +1,7 @@
 #!/bin/bash
 # wp-cli
 
-mkdir -p /run/php/
-touch /run/php/php7.3-fpm.pid
+
 
 if [  -f "/var/www/html/wp-config.php" ]; then
     echo "wp exist"
@@ -29,40 +28,36 @@ else
 # touch ls
 
 
-wp config create --allow-root --url=localhost --dbhost=mariadb --dbname=$USER_DATABASE --dbuser=$USER_WP --dbpass=$USER_PASSWORD --skip-check
+wp config create --allow-root --url=localhost --dbhost='mariadb' --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --skip-check
 wp core install --allow-root --url=localhost --title=zrabhi --admin_user=zrabhi --admin_password=zrabhi --admin_email=zrabhi@example.com --skip-email
-wp user create --allow-root avnn ann@exavmple.com --user_pass=Qwerty.123
-# wp core --allow-root config --dbname='wordpress' --dbuser='zac' --dbpass='PASSzrabhi01' --dbhost='mariadb' --skip-check
+wp user create --allow-root avnn ann@exavmple.com --user_pass=Qwerty.123 --role=author
 
-# wp core install --url='localhost' --title='MY website' --admin_user='zac' --admin_password='PASSzac01' --admin_email='zac.rabhi12@gmail.com' --allow-root
 
 # # create second user in wordpress
-# wp user create $USER $USER_EMAIL --user_pass=$USER_PASSWORD --role='author' --allow-root
 
 
 ## install theme
-wp theme install astra --activate --allow-root
+wp --allow-root theme install zeever --activate 
 
-# wp plugin install redis-cache --activate --allow-root
+wp plugin update --all --allow-root
 
-# wp plugin update --all --allow-root
+wp plugin install redis-cache --activate --allow-root
 
 
-# wp redis enable --allow-root
+wp redis enable --allow-root
 # change is modifying the unix socket used for the connection of PHP-FPM with the web server,
 # from the default /run/php/php7.3-fpm.sock to TCP/IP port 9000 .
 
-# wp config set FORCE_SSL_ADMIN 'false' --allow-root
 
 # # set Hostname of redis container
-# wp config set WP_REDIS_HOST 'redis' --allow-root
+#       wp config set WP_REDIS_HOST 'redis' --allow-root
 
 # # set The Port of Redis, This command is also assuming that Redis is running and listen on port 6379,
-# wp config set WP_REDIS_PORT '6379' --allow-root
+#     wp config set WP_REDIS_PORT '6379' --allow-root
 
 # # The instruction "wp config set WP_CACHE 'true'" is a command that sets the value of the WP_CACHE constant in the WordPress configuration file to "true".
 # # This constant controls whether caching is enabled in WordPress or not.
-# wp config set WP_CACHE 'true' --allow-root
+#      wp config set WP_CACHE 'true' --allow-root
 
 # # instal the wordpress
 

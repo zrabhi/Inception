@@ -8,7 +8,8 @@ RUN  mkdir -p /run/php/
 
 RUN  chmod +x /tmp/script.sh
 
-ENTRYPOINT [ "sh","/tmp/script.sh" ] 
 # EXPOSE 9000
+
+ENTRYPOINT [ "sh","/tmp/script.sh" ] 
 
 CMD ["php-fpm7.3", "-F"]

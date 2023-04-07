@@ -40,7 +40,25 @@ services:
         - data_wp:/var/www/html/
       networks:
         - np
-
+    redis:
+      build: requirements/bonus/redis
+      container_name: redis
+      image: redis
+      env_file:
+        - .env
+      restart: on-failure
+      networks:
+        - np
+    adminer: requirements/bonus/adminer
+    container_name: adminer
+    image: adminer
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    networks:
+      - np
 volumes:
   data_wp:
       driver_opts:

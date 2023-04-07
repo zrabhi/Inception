@@ -1,7 +1,7 @@
 init:
 	mkdir -p /Users/zrabhi/inception_volume/wordpress /Users/zrabhi/inception_volume/mariadb
 up: 
-	docker-compose -f ./srcs/docker-compose.yml up --build
+	docker-compose -f ./srcs/docker-compose.yml up 
 down:
 	docker-compose -f ./srcs/docker-compose.yml down
 fclean:

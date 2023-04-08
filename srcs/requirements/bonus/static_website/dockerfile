@@ -6,6 +6,6 @@ RUN mkdir -p /var/www/html/website && chown -R www-data:www-data /var/www/html/w
 
 COPY ./tools/website /var/www/html/website
 
-COPY ./tools/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY ./conf/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

@@ -14,9 +14,15 @@ fclean:
 	- rm -rf /Users/zrabhi/inception_volume/wordpress/*
 re: fclean init up
 
-wo: 
+wordpress: 
 	- docker exec -it wordpress bash
-ng: 
+nginx: 
 	- docker exec -it nginx bash
-ma: 
+mariadb: 
 	- docker exec -it mariadb bash
+adminer:
+	- docker exec -it adminer bash
+redis:
+	- docker exec -it redis bash
+cadvisor:
+	- docker exec -it cadvisor bash

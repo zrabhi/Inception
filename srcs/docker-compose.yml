@@ -77,6 +77,15 @@ services:
       restart: on-failure
       networks:
         - np
+    static_website:
+       build: requirements/bonus/static_website
+       container_name: static_website
+       image: static_website
+       ports:
+         - "80:80"
+       restart: on-failure
+       networks:
+         - np
 
 volumes:
   data_wp:

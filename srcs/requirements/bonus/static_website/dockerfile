@@ -1,4 +1,11 @@
 FROM debian:buster
 
-RUN apt-get update -y && apt-get install apache2
+RUN  apt-get update -y && apt-get install apache2 -y
 
+RUN mkdir -p /var/www/html/website && chown -R www-data:www-data /var/www/html/website
+
+COPY ./tools/website /var/www/html/website
+
+COPY ./tools/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

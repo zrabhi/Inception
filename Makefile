@@ -26,3 +26,5 @@ redis:
 	- docker exec -it redis bash
 cadvisor:
 	- docker exec -it cadvisor bash
+static_website:
+	- docker exec -it static_website bash
